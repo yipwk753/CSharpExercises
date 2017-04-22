@@ -49,20 +49,6 @@ namespace CSharpExercises
                         }
                         break;
                     }
-                /*case "3":
-                    {
-                        List<int> numList = PrimeNumberSieve(GetIntegerInput());
-                        if (numList.Count == 0)
-                        {
-                            Console.WriteLine("There were no prime numbers.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("The prime numbers are " + string.Join(", ", numList) + ".");
-                        }
-
-                        break;
-                    }*/
                 default:
                     {
                         Console.WriteLine("You entered a number unassociated with the methods.");
@@ -144,32 +130,6 @@ namespace CSharpExercises
                     }
                 }
             }
-        }
-
-        public List<int> PrimeNumberSieve(int input)
-        {
-            List<int> primeNumList = new List<int>();
-            if (input == 1)
-            {
-                Console.WriteLine("The prime number is 1.");
-                return primeNumList;
-            }
-            List<int> tempNumList = new List<int>();
-            for (int i = 1; i < input; i++)
-            {
-                primeNumList.Add(i);
-                while (i <= (input / 2 + 1))
-                {
-                    if (input % i == 0)
-                    {
-                        tempNumList.Add(i);
-                    }
-                    i++;
-                }
-            }
-            primeNumList = primeNumList.Except(tempNumList).ToList();
-
-            return primeNumList;
         }
     }
 }

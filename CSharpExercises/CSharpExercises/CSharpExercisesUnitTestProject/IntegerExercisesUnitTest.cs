@@ -20,16 +20,5 @@ namespace CSharpExercisesUnitTestProject
             numList = intExercises.CheckIfCompositeNumber(7);
             Assert.IsTrue(numList.Count == 0);
         }
-
-        /*[TestMethod]
-        public void PrimeNumberSieveTest()
-        {
-            List<int> numList = new List<int>();
-            numList = intExercises.PrimeNumberSieve(10);
-            Assert.IsTrue(numList.Count > 0);
-
-            numList = intExercises.PrimeNumberSieve(7);
-            Assert.IsTrue(numList.Count == 0);
-        }*/
     }
 }
