@@ -24,9 +24,24 @@ namespace CSharpExercises
             return response;
         }
 
+        public static int GetPositiveInput()
+        {
+            Console.WriteLine("Enter a non-zero positive whole number.");
+            int response = 0;
+            Int32.TryParse(Console.ReadLine(), out response);
+            if (response <= 0)
+            {
+                Console.WriteLine("You did not enter a number, you entered a zero, you entered a negative number, or you entered a number " +
+                    "with a decimal.");
+                Console.ReadKey();
+                Environment.Exit(0);
+            }
+            return response;
+        }
+
         public void ExecuteFunction()
         {
-            Console.WriteLine("Enter an integer to choose which method to execute:\n1) FizzBuzz\n2) Check If Number Is Composite");
+            Console.WriteLine("Enter an integer to choose which method to execute:\n1) FizzBuzz\n2) Check If Number Is Composite\n3) Find LCD Of Two Numbers");
             string key = Console.ReadLine();
             switch (key)
             {
@@ -47,6 +62,14 @@ namespace CSharpExercises
                         {
                             Console.WriteLine(input + " is not a composite number.");
                         }
+                        break;
+                    }
+                case "3":
+                    {
+                        int input1 = GetPositiveInput();
+                        int input2 = GetPositiveInput();
+                        int lcdNum = FindLeastCommonDenominator(input1, input2);
+                        Console.WriteLine("The LCD of {0} and {1} is {2}.", input1, input2, lcdNum);
                         break;
                     }
                 default:
@@ -70,14 +93,6 @@ namespace CSharpExercises
                         numList.Add(i);
                     }
                 }
-                if (numList.Count != 0)
-                {
-                    Console.WriteLine(input + " is a composite number. Its factor(s) are " + string.Join(", ", numList) + ".");
-                }
-                else
-                {
-                    Console.WriteLine(input + " is not a composite number.");
-                }
             }
             else
             {
@@ -90,6 +105,32 @@ namespace CSharpExercises
                 }
             }
             return numList;
+        }
+
+        public int FindLeastCommonDenominator(int input1, int input2)
+        {
+            int lcdInt = 0;
+            if (input1 < input2)
+            {
+                for (lcdInt = input1; lcdInt < input1 * input2; lcdInt += input1)
+                {
+                    if (lcdInt % input1 == 0 && lcdInt % input2 == 0)
+                    {
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                for (lcdInt = input2; lcdInt < input1 * input2; lcdInt += input2)
+                {
+                    if (lcdInt % input1 == 0 && lcdInt % input2 == 0)
+                    {
+                        break;
+                    }
+                }
+            }
+            return lcdInt;
         }
 
         public void FizzBuzz(int input)
