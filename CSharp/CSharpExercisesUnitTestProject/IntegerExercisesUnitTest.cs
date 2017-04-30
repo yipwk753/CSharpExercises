@@ -36,5 +36,18 @@ namespace CSharpExercisesUnitTestProject
             lcdNum = intExercises.FindLeastCommonDenominator(1, 4);
             Assert.IsTrue(lcdNum == 4);
         }
+
+        [TestMethod]
+        public void PrimeNumberSieve()
+        {
+            List<int> primeNumList = new List<int>();
+            primeNumList = intExercises.PrimeNumberSieve(12);
+            Assert.IsTrue(primeNumList.Contains(1));
+            Assert.IsTrue(primeNumList.Contains(2));
+            Assert.IsTrue(primeNumList.Contains(3));
+            Assert.IsTrue(primeNumList.Contains(5));
+            Assert.IsTrue(primeNumList.Contains(7));
+            Assert.IsTrue(primeNumList.Contains(11));
+        }
     }
 }

@@ -24,7 +24,7 @@ namespace CSharpExercises
             return response;
         }
 
-        public static int GetPositiveInput()
+        public static int GetPositiveIntegerInput()
         {
             Console.WriteLine("Enter a non-zero positive whole number.");
             int response = 0;
@@ -41,7 +41,7 @@ namespace CSharpExercises
 
         public void ExecuteFunction()
         {
-            Console.WriteLine("Enter an integer to choose which method to execute:\n1) FizzBuzz\n2) Check If Number Is Composite\n3) Find LCD Of Two Numbers");
+            Console.WriteLine("Enter an integer to choose which method to execute:\n1) FizzBuzz\n2) Check If Number Is Composite\n3) Find LCD Of Two Numbers\n4) Prime Number Sieve");
             string key = Console.ReadLine();
             switch (key)
             {
@@ -66,10 +66,17 @@ namespace CSharpExercises
                     }
                 case "3":
                     {
-                        int input1 = GetPositiveInput();
-                        int input2 = GetPositiveInput();
+                        int input1 = GetPositiveIntegerInput();
+                        int input2 = GetPositiveIntegerInput();
                         int lcdNum = FindLeastCommonDenominator(input1, input2);
                         Console.WriteLine("The LCD of {0} and {1} is {2}.", input1, input2, lcdNum);
+                        break;
+                    }
+                case "4":
+                    {
+                        int input = GetPositiveIntegerInput();
+                        List<int> primeNumList = PrimeNumberSieve(input);
+                        Console.WriteLine("The prime numbers from 1 to " + input + " are " + string.Join(", ", primeNumList) + ".");
                         break;
                     }
                 default:
@@ -171,6 +178,26 @@ namespace CSharpExercises
                     }
                 }
             }
+        }
+
+        public List<int> PrimeNumberSieve(int input)
+        {
+            List<int> primeNumList = new List<int>();
+            List<int> tempNumList = new List<int>();
+            primeNumList = Enumerable.Range(1, input).ToList();
+            foreach (int num in primeNumList.Skip(3))
+            {
+                for (int i = 2; i < Math.Sqrt(num) + 1; i++)
+                {
+                    if (num % i == 0)
+                    {
+                        tempNumList.Add(num);
+                        break;
+                    }
+                }
+            }
+            primeNumList = primeNumList.Except(tempNumList).ToList();
+            return primeNumList;
         }
     }
 }

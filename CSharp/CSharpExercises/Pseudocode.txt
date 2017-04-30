@@ -1,0 +1,52 @@
+﻿  \Integers
+  i`Check if a number is composite
+1. Get number from user
+2. Create an empty integer list
+3. Account for if the user's number is positive or negative
+4. Make a for loop with an integer initialized to 2 and the boolean condition set to the user's number divided by 2 plus or minus 1 depending on the sign of the user's number
+5. If the user's number is divisible by the integer, add the integer to the list
+6. If the list is not empty, the number is composite. Else, it is not.
+
+  i`Find the least common denominator of two numbers
+1. Get numbers from user
+2. Compare the numbers to see which is smaller and put the smaller one in a temporary variable
+3. Make a for loop with the boolean condition set to the two numbers multiplied together
+4. Add the smaller number to the temp variable each loop
+5. Check if the temp variable is divisible by both numbers
+
+  i`FizzBuzz
+1. Get number from user
+2. Account for if the user's number is positive or negative
+3. Make a for loop with an integer initialized to 1 or -1 depending on the number's sign and the boolean condition set to the user's number
+4. If the integer is divisible by both 5 and 3, write "FizzBuzz"
+5. Else if the integer is divisible by only 5, write "Fizz"
+6. Else if the integer is divisible by only 3, write "Buzz"
+
+  i`Prime number sieve
+1. Get number from user
+2. Get list of numbers from 1 to the user's number
+3. Skip the first 3 numbers and iterate over the rest of the list
+4. Make a for loop with the integer set to 2 and the boolean condition set to the square root of the iterated number plus 1
+5. If the number is divisible by the integer, add it to a temporary list
+6. Remove all numbers in the temporary list from the first list
+
+  \Strings
+  s`Check if a string is a palindrome
+1. Get string from user
+2. Create a boolean and set it to false
+3. Reverse the string and assign the result to a new string
+4. If the lower-cased reversed string and the lower-cased user's string are equal, set the boolean to true
+
+  s`Count the vowels of a string
+1. Get string from user
+2. Create 6 integer variables for the 5 vowels and a count of all the vowels
+3. Make a foreach loop for the user's string
+4. Each loop, if a character from the string is a vowel, add it to the corresponding integer variable
+5. Add up all of the vowels
+
+  s`Reverse a string
+1. Get string from user
+2. Create a new StringBuilder variable
+3. Make a for loop with an integer initialized to the length of the string minus 1 and the boolean condition set to 0
+4. Each loop, get the character from the StringBuilder variable using the integer for the place in the variable
+5. Convert the StringBuilder variable to a string
