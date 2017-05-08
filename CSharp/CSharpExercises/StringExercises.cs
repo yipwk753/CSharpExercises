@@ -44,7 +44,8 @@ namespace CSharpExercises
                     }
                 case "3":
                     {
-                        CountVowels(GetStringInput());
+                        string str = CountVowels(GetStringInput());
+                        Console.WriteLine(str);
                         break;
                     }
                 default:
@@ -67,7 +68,7 @@ namespace CSharpExercises
             return isPalindrome;
         }
 
-        public void CountVowels(string response)
+        public string CountVowels(string response)
         {
             int a = 0; int e = 0; int i = 0; int o = 0; int u = 0, vowels = 0;
             foreach (var r in response)
@@ -94,8 +95,9 @@ namespace CSharpExercises
                 }
             }
             vowels = a + e + i + o + u;
-            //Console.WriteLine(response + " has " + vowels + " vowels: " + a + " A's, " + e + " E's, " + i + " I's, " + o + " O's, and " + u + " U's.");
-            Console.WriteLine("{0} has {1} vowels: {2} A's, {3} E's, {4} I's, {5} O's, and {6} U's.", response, vowels, a, e, i, o, u);
+            //string str = response + " has " + vowels + " vowels: " + a + " A's, " + e + " E's, " + i + " I's, " + o + " O's, and " + u + " U's.";
+            string str = string.Format("{0} has {1} vowels: {2} A's, {3} E's, {4} I's, {5} O's, and {6} U's.", response, vowels, a, e, i, o, u);
+            return str;
         }
 
         public string ReverseString(string response)

@@ -22,6 +22,19 @@ namespace CSharpExercisesUnitTestProject
         }
 
         [TestMethod]
+        public void FibonacciSequenceTest()
+        {
+            List<int> sequence = new List<int>();
+            sequence = intExercises.FibonacciSequence(7);
+            Assert.IsTrue(sequence.Contains(0));
+            Assert.IsTrue(sequence.Contains(1));
+            Assert.IsTrue(sequence.Contains(2));
+            Assert.IsTrue(sequence.Contains(3));
+            Assert.IsTrue(sequence.Contains(5));
+            Assert.IsTrue(sequence.Contains(8));
+        }
+
+        [TestMethod]
         public void FindLeastCommonDenominatorTest()
         {
             int lcdNum = intExercises.FindLeastCommonDenominator(3, 4);
@@ -45,9 +58,15 @@ namespace CSharpExercisesUnitTestProject
             Assert.IsTrue(primeNumList.Contains(1));
             Assert.IsTrue(primeNumList.Contains(2));
             Assert.IsTrue(primeNumList.Contains(3));
+            Assert.IsFalse(primeNumList.Contains(4));
             Assert.IsTrue(primeNumList.Contains(5));
+            Assert.IsFalse(primeNumList.Contains(6));
             Assert.IsTrue(primeNumList.Contains(7));
+            Assert.IsFalse(primeNumList.Contains(8));
+            Assert.IsFalse(primeNumList.Contains(9));
+            Assert.IsFalse(primeNumList.Contains(10));
             Assert.IsTrue(primeNumList.Contains(11));
+            Assert.IsFalse(primeNumList.Contains(12));
         }
     }
 }

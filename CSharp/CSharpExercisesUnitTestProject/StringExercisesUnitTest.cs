@@ -21,6 +21,13 @@ namespace CSharpExercisesUnitTestProject
         }
 
         [TestMethod]
+        public void CountVowelsTest()
+        {
+            string str = strExercises.CountVowels("Hello World!");
+            Assert.AreEqual(str, "Hello World! has 3 vowels: 0 A's, 1 E's, 0 I's, 2 O's, and 0 U's.");
+        }
+
+        [TestMethod]
         public void ReverseStringTest()
         {
             string reversed = "";

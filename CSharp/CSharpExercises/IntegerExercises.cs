@@ -41,7 +41,8 @@ namespace CSharpExercises
 
         public void ExecuteFunction()
         {
-            Console.WriteLine("Enter an integer to choose which method to execute:\n1) FizzBuzz\n2) Check If Number Is Composite\n3) Find LCD Of Two Numbers\n4) Prime Number Sieve");
+            Console.WriteLine("Enter an integer to choose which method to execute:\n1) FizzBuzz\n2) Check If Number Is Composite\n3) Find LCD Of Two Numbers" +
+                "\n4) Prime Number Sieve\n5) Fibonacci Sequence");
             string key = Console.ReadLine();
             switch (key)
             {
@@ -79,6 +80,13 @@ namespace CSharpExercises
                         Console.WriteLine("The prime numbers from 1 to " + input + " are " + string.Join(", ", primeNumList) + ".");
                         break;
                     }
+                case "5":
+                    {
+                        int input = GetPositiveIntegerInput();
+                        List<int> sequence = FibonacciSequence(input);
+                        Console.WriteLine("The fibonacci sequence is " + string.Join(" ", sequence) + ".");
+                        break;
+                    }
                 default:
                     {
                         Console.WriteLine("You entered a number unassociated with the methods.");
@@ -112,6 +120,24 @@ namespace CSharpExercises
                 }
             }
             return numList;
+        }
+
+        public List<int> FibonacciSequence(int input)
+        {
+            int num1 = 0;
+            int num2 = 1;
+            int tempNum = 0;
+            List<int> sequence = new List<int>();
+            sequence.Add(num1);
+            sequence.Add(num2);
+            for (int i = 2; i < input; i++)
+            {
+                tempNum = num1 + num2;
+                sequence.Add(tempNum);
+                num1 = num2;
+                num2 = tempNum;
+            }
+            return sequence;
         }
 
         public int FindLeastCommonDenominator(int input1, int input2)
