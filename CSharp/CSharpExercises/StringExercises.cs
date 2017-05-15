@@ -13,18 +13,26 @@ namespace CSharpExercises
         {
             Console.WriteLine("Enter a word or phrase.");
             string response = Console.ReadLine();
+            if (string.IsNullOrEmpty(response))
+            {
+                Console.WriteLine("You did not enter any words or phrases.");
+                Console.ReadKey();
+                Environment.Exit(0);
+            }
             return response;
         }
 
         public void ExecuteFunction()
         {
-            Console.WriteLine("Enter an integer to choose which method to execute:\n1) Reverse String\n2) Check If Number Is A Palindrome\n3) Count Vowels");
+            Console.WriteLine("Enter an integer to choose which method to execute:\n1) Reverse String\n2) Check If Number Is A Palindrome\n3) Count Vowels\n4) Reverse Sentence");
             string key = Console.ReadLine();
             switch (key)
             {
                 case "1":
                     {
-                        ReverseString(GetStringInput());
+                        string response = GetStringInput();
+                        string reversed = ReverseString(response);
+                        Console.WriteLine(response + " reversed is " + reversed);
                         break;
                     }
                 case "2":
@@ -46,6 +54,13 @@ namespace CSharpExercises
                     {
                         string str = CountVowels(GetStringInput());
                         Console.WriteLine(str);
+                        break;
+                    }
+                case "4":
+                    {
+                        string response = GetStringInput();
+                        string reversed = ReverseSentence(response);
+                        Console.WriteLine(response + " reversed is " + reversed);
                         break;
                     }
                 default:
@@ -100,6 +115,25 @@ namespace CSharpExercises
             return str;
         }
 
+        public string ReverseSentence(string response)
+        {
+            StringBuilder temp = new StringBuilder();
+            string[] strArray = response.Split(' ');
+            strArray = strArray.Where(x => x != "").ToArray();
+            int arrLength = strArray.Length;
+            if (arrLength == 1)
+            {
+                return response;
+            }
+            temp.Append(strArray[arrLength - 1]);
+            for (int i = arrLength - 2; i >= 0; i--)
+            {
+                temp.Append(" " + strArray[i]);
+            }
+            string reversed = temp.ToString();
+            return reversed;
+        }
+
         public string ReverseString(string response)
         {
             StringBuilder temp = new StringBuilder();
@@ -108,7 +142,6 @@ namespace CSharpExercises
                 temp.Append(response[i]);
             }
             string reversed = temp.ToString();
-            Console.WriteLine(response + " reversed is " + reversed);
             return reversed;
         }
     }

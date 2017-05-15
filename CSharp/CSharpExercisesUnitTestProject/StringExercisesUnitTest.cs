@@ -28,6 +28,14 @@ namespace CSharpExercisesUnitTestProject
         }
 
         [TestMethod]
+        public void ReverseSentenceTest()
+        {
+            string reversed = "";
+            reversed = strExercises.ReverseSentence("Hello World!");
+            Assert.AreEqual("World! Hello", reversed);
+        }
+
+        [TestMethod]
         public void ReverseStringTest()
         {
             string reversed = "";

@@ -128,6 +128,11 @@ namespace CSharpExercises
             int num2 = 1;
             int tempNum = 0;
             List<int> sequence = new List<int>();
+            if (input == 1)
+            {
+                sequence.Add(num1);
+                return sequence;
+            }
             sequence.Add(num1);
             sequence.Add(num2);
             for (int i = 2; i < input; i++)

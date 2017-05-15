@@ -52,9 +52,19 @@
 4. Each loop, if a character from the string is a vowel, add it to the corresponding integer variable
 5. Add up all of the vowels
 
+  s`Reverse a sentence
+1. Get sentence from user
+2. Create a new StringBuilder variable
+3. Split the sentence only on spaces into an array
+4. Remove any empty values from the array
+5. Account for if there's only one value in the array
+6. Make a for loop with the integer initialized to the array's length minus 2 and the boolean condition set to 0
+7. Each loop, get the word from the array and append it to the StringBuilder variable
+8. Convert the StringBuilder variable to a string
+
   s`Reverse a string
 1. Get string from user
 2. Create a new StringBuilder variable
 3. Make a for loop with an integer initialized to the length of the string minus 1 and the boolean condition set to 0
-4. Each loop, get the character from the StringBuilder variable using the integer for the place in the variable
+4. Each loop, get the character from the string variable using the integer for the place in the variable and append it to the StringBuilder variable
 5. Convert the StringBuilder variable to a string
