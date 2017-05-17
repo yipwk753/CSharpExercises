@@ -30,6 +30,13 @@
 5. Else if the integer is divisible by only 5, write "Fizz"
 6. Else if the integer is divisible by only 3, write "Buzz"
 
+  i`Multiples of 3 and 5
+1. Get number from user
+2. Account for if the user's number is positive or negative
+3. Create an integer set to 0
+4. Make a for loop with an integer initialized to 3 or -3 depending on the number's sign and the boolean condition set to the user's number
+5. If the loop's integer is divisible by 3 or 5, add it to the integer created in step 3
+
   i`Prime number sieve
 1. Get number from user
 2. Get list of numbers from 1 to the user's number

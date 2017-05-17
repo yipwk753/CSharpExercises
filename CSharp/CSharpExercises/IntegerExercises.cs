@@ -42,7 +42,7 @@ namespace CSharpExercises
         public void ExecuteFunction()
         {
             Console.WriteLine("Enter an integer to choose which method to execute:\n1) FizzBuzz\n2) Check If Number Is Composite\n3) Find LCD Of Two Numbers" +
-                "\n4) Prime Number Sieve\n5) Fibonacci Sequence");
+                "\n4) Prime Number Sieve\n5) Fibonacci Sequence\n6) Multiples of 3 and 5");
             string key = Console.ReadLine();
             switch (key)
             {
@@ -85,6 +85,13 @@ namespace CSharpExercises
                         int input = GetPositiveIntegerInput();
                         List<int> sequence = FibonacciSequence(input);
                         Console.WriteLine("The fibonacci sequence is " + string.Join(" ", sequence) + ".");
+                        break;
+                    }
+                case "6":
+                    {
+                        int input = GetIntegerInput();
+                        int sum = MultiplesOf3And5(input);
+                        Console.WriteLine("The sum of the 3 and 5 multiples of " + input + " is " + sum + ".");
                         break;
                     }
                 default:
@@ -209,6 +216,32 @@ namespace CSharpExercises
                     }
                 }
             }
+        }
+
+        public int MultiplesOf3And5(int input)
+        {
+            int sum = 0;
+            if (input > 0)
+            {
+                for (int i = 3; i <= input; i++)
+                {
+                    if (i % 3 == 0 || i % 5 == 0)
+                    {
+                        sum += i;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = -3; i >= input; i--)
+                {
+                    if (i % 3 == 0 || i % 5 == 0)
+                    {
+                        sum += i;
+                    }
+                }
+            }
+            return sum;
         }
 
         public List<int> PrimeNumberSieve(int input)

@@ -51,6 +51,16 @@ namespace CSharpExercisesUnitTestProject
         }
 
         [TestMethod]
+        public void MultiplesOf3And5Test()
+        {
+            int sum = intExercises.MultiplesOf3And5(20);
+            Assert.IsTrue(sum == 98);
+
+            sum = intExercises.MultiplesOf3And5(-18);
+            Assert.IsTrue(sum == -78);
+        }
+
+        [TestMethod]
         public void PrimeNumberSieve()
         {
             List<int> primeNumList = new List<int>();
