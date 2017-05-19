@@ -22,6 +22,16 @@ namespace CSharpExercisesUnitTestProject
         }
 
         [TestMethod]
+        public void EvenFibonacciNumbersSumTest()
+        {
+            int sum = intExercises.EvenFibonacciNumbersSum(10);
+            Assert.AreEqual(sum, 44);
+
+            sum = intExercises.EvenFibonacciNumbersSum(1);
+            Assert.AreEqual(sum, 0);
+        }
+
+        [TestMethod]
         public void FibonacciSequenceTest()
         {
             List<int> sequence = new List<int>();

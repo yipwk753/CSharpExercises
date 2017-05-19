@@ -42,7 +42,7 @@ namespace CSharpExercises
         public void ExecuteFunction()
         {
             Console.WriteLine("Enter an integer to choose which method to execute:\n1) FizzBuzz\n2) Check If Number Is Composite\n3) Find LCD Of Two Numbers" +
-                "\n4) Prime Number Sieve\n5) Fibonacci Sequence\n6) Multiples of 3 and 5");
+                "\n4) Prime Number Sieve\n5) Fibonacci Sequence\n6) Multiples of 3 and 5\n7) Even Fibonacci Numbers Sum");
             string key = Console.ReadLine();
             switch (key)
             {
@@ -84,7 +84,7 @@ namespace CSharpExercises
                     {
                         int input = GetPositiveIntegerInput();
                         List<int> sequence = FibonacciSequence(input);
-                        Console.WriteLine("The fibonacci sequence is " + string.Join(" ", sequence) + ".");
+                        Console.WriteLine("The Fibonacci sequence is " + string.Join(" ", sequence) + ".");
                         break;
                     }
                 case "6":
@@ -92,6 +92,13 @@ namespace CSharpExercises
                         int input = GetIntegerInput();
                         int sum = MultiplesOf3And5(input);
                         Console.WriteLine("The sum of the 3 and 5 multiples of " + input + " is " + sum + ".");
+                        break;
+                    }
+                case "7":
+                    {
+                        int input = GetPositiveIntegerInput();
+                        int sum = EvenFibonacciNumbersSum(input);
+                        Console.WriteLine("The sum of the even numbers in the Fibonacci sequence is " + sum + ".");
                         break;
                     }
                 default:
@@ -127,6 +134,30 @@ namespace CSharpExercises
                 }
             }
             return numList;
+        }
+
+        public int EvenFibonacciNumbersSum(int input)
+        {
+            int num1 = 0, num2 = 1, sum = 0, tempnum = 0;
+            if (input == 1)
+            {
+                return 0;
+            }
+            if (input == 2)
+            {
+                return 1;
+            }
+            for (int i = 2; i < input; i++)
+            {
+                tempnum = num1 + num2;
+                if (tempnum % 2 == 0)
+                {
+                    sum += tempnum;
+                }
+                num1 = num2;
+                num2 = tempnum;
+            }
+            return sum;
         }
 
         public List<int> FibonacciSequence(int input)

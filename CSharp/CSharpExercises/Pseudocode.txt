@@ -7,6 +7,12 @@
 5. If the user's number is divisible by the integer, add the integer to the list
 6. If the list is not empty, the number is composite. Else, it is not.
 
+  i`Even Fibonacci Numbers
+1. Repeat steps from the Fibonacci Sequence method
+2. Create an integer set to 0
+3. Account for if the user enters 1 or 2
+4. In the for loop, for every number divisible by 2, add it to the integer
+
   i`Fibonacci Sequence
 1. Get number from user
 2. Create 3 integer variables with the first two set to 0 and 1
