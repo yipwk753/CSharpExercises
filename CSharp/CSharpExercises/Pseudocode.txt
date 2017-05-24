@@ -36,6 +36,16 @@
 5. Else if the integer is divisible by only 5, write "Fizz"
 6. Else if the integer is divisible by only 3, write "Buzz"
 
+  i`Largest Prime Factor
+1. Get number from user
+2. Create a boolean IsPrime set to true
+3. Account for if the user enters 1
+4. Make a for loop with the integer set to the user's number divided by 2
+5. Create an inner loop for any integer's that the user's number is divisible by
+6. In the inner loop, set the integer to the divisible integer divided by 2
+7. If the inner loop's integer is divisible, set the boolean to false and break out of the loop
+8. If the inner loop has finished and the boolean is true, the loop's integer is the largest prime factor
+
   i`Multiples of 3 and 5
 1. Get number from user
 2. Account for if the user's number is positive or negative

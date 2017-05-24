@@ -42,7 +42,7 @@ namespace CSharpExercises
         public void ExecuteFunction()
         {
             Console.WriteLine("Enter an integer to choose which method to execute:\n1) FizzBuzz\n2) Check If Number Is Composite\n3) Find LCD Of Two Numbers" +
-                "\n4) Prime Number Sieve\n5) Fibonacci Sequence\n6) Multiples of 3 and 5\n7) Even Fibonacci Numbers Sum");
+                "\n4) Prime Number Sieve\n5) Fibonacci Sequence\n6) Multiples of 3 and 5\n7) Even Fibonacci Numbers Sum\n8) Largest Prime Factor");
             string key = Console.ReadLine();
             switch (key)
             {
@@ -99,6 +99,13 @@ namespace CSharpExercises
                         int input = GetPositiveIntegerInput();
                         int sum = EvenFibonacciNumbersSum(input);
                         Console.WriteLine("The sum of the even numbers in the Fibonacci sequence is " + sum + ".");
+                        break;
+                    }
+                case "8":
+                    {
+                        int input = GetPositiveIntegerInput();
+                        int primeFactor = LargestPrimeFactor(input);
+                        Console.WriteLine("The largest prime number of {0} is {1}.", input, primeFactor);
                         break;
                     }
                 default:
@@ -247,6 +254,37 @@ namespace CSharpExercises
                     }
                 }
             }
+        }
+
+        public int LargestPrimeFactor(int input)
+        {
+            int primeFactor = 0;
+            if (input.Equals(1))
+            {
+                return 1;
+            }
+            bool isPrime = false;
+            for (int i = input/2; i > 0; i--)
+            {
+                isPrime = true;
+                if (input % i == 0)
+                {
+                    for (int j = 2; j < i/2; j++)
+                    {
+                        if (i % j == 0)
+                        {
+                            isPrime = false;
+                            break;
+                        }
+                    }
+                    if (isPrime == true)
+                    { 
+                        primeFactor = i;
+                        break;
+                    }
+                }
+            }
+            return primeFactor;
         }
 
         public int MultiplesOf3And5(int input)

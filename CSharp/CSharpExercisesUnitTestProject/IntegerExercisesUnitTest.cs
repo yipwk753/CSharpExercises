@@ -61,6 +61,16 @@ namespace CSharpExercisesUnitTestProject
         }
 
         [TestMethod]
+        public void LargestPrimeFactorTest()
+        {
+            int primeFactor = intExercises.LargestPrimeFactor(81);
+            Assert.AreEqual(primeFactor, 3);
+
+            primeFactor = intExercises.LargestPrimeFactor(100);
+            Assert.AreEqual(primeFactor, 5);
+        }
+
+        [TestMethod]
         public void MultiplesOf3And5Test()
         {
             int sum = intExercises.MultiplesOf3And5(20);
