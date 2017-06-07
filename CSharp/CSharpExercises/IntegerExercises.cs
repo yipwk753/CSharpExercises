@@ -42,7 +42,7 @@ namespace CSharpExercises
         public void ExecuteFunction()
         {
             Console.WriteLine("Enter an integer to choose which method to execute:\n1) FizzBuzz\n2) Check If Number Is Composite\n3) Find LCD Of Two Numbers" +
-                "\n4) Prime Number Sieve\n5) Fibonacci Sequence\n6) Multiples of 3 and 5\n7) Even Fibonacci Numbers Sum\n8) Largest Prime Factor");
+                "\n4) Prime Number Sieve\n5) Fibonacci Sequence\n6) Multiples of 3 and 5\n7) Even Fibonacci Numbers Sum\n8) Largest Prime Factor\n9) Largest Palindrome Product");
             string key = Console.ReadLine();
             switch (key)
             {
@@ -106,6 +106,19 @@ namespace CSharpExercises
                         int input = GetPositiveIntegerInput();
                         int primeFactor = LargestPrimeFactor(input);
                         Console.WriteLine("The largest prime number of {0} is {1}.", input, primeFactor);
+                        break;
+                    }
+                case "9":
+                    {
+                        Tuple<int, int, bool> tuple = LargestPalindromeProduct(GetPositiveIntegerInput(), GetPositiveIntegerInput());
+                        if (tuple.Item3)
+                        {
+                            Console.WriteLine("The numbers {0} and {1} created the palindrome {2}.", tuple.Item1, tuple.Item2, tuple.Item1 * tuple.Item2);
+                        }
+                        else
+                        {
+                            Console.WriteLine("The inputted numbers did not create a palindrome.");
+                        }
                         break;
                     }
                 default:
@@ -254,6 +267,30 @@ namespace CSharpExercises
                     }
                 }
             }
+        }
+
+        public Tuple<int, int, bool> LargestPalindromeProduct(int input1, int input2)
+        {
+            bool isPalindrome = false;
+            int num1 = 0;
+            int num2 = 0;
+            string str = "";
+            StringExercises strExercises = new StringExercises();
+
+            for (num1 = input1; num1 > 0; num1--)
+            {
+                for (num2 = input2; num2 > 0; num2--)
+                {
+                    str = (num1 * num2).ToString();
+                    isPalindrome = strExercises.CheckIsPalindrome(str);
+                    if (isPalindrome)
+                    {
+                        return Tuple.Create(num1, num2, isPalindrome);
+                    }
+                }
+            }
+
+            return Tuple.Create(0, 0, isPalindrome);
         }
 
         public int LargestPrimeFactor(int input)

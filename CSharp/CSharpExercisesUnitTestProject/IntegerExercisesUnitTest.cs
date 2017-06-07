@@ -61,6 +61,16 @@ namespace CSharpExercisesUnitTestProject
         }
 
         [TestMethod]
+        public void LargestPalindromeProduct()
+        {
+            Tuple<int, int, bool> tuple = intExercises.LargestPalindromeProduct(999, 99);
+            Assert.IsTrue(tuple.Item3);
+            Assert.AreEqual(tuple.Item1, 999);
+            Assert.AreEqual(tuple.Item2, 91);
+            Assert.AreEqual(tuple.Item1 * tuple.Item2, 90909);
+        }
+
+        [TestMethod]
         public void LargestPrimeFactorTest()
         {
             int primeFactor = intExercises.LargestPrimeFactor(81);

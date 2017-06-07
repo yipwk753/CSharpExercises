@@ -36,6 +36,12 @@
 5. Else if the integer is divisible by only 5, write "Fizz"
 6. Else if the integer is divisible by only 3, write "Buzz"
 
+  i`Largest palindrome product
+1. Get two numbers from user
+2. Create a boolean isPalindrome set to false
+3. Make a for loop with the integer set to the user's first number and an inner loop with the integer set to the user's second number
+4. Check if the product of the first and second number is a palindrome; if it is, set the boolean to true and break out of the loop
+
   i`Largest Prime Factor
 1. Get number from user
 2. Create a boolean IsPrime set to true
