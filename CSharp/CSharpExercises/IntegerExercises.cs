@@ -42,7 +42,8 @@ namespace CSharpExercises
         public void ExecuteFunction()
         {
             Console.WriteLine("Enter an integer to choose which method to execute:\n1) FizzBuzz\n2) Check If Number Is Composite\n3) Find LCD Of Two Numbers" +
-                "\n4) Prime Number Sieve\n5) Fibonacci Sequence\n6) Multiples of 3 and 5\n7) Even Fibonacci Numbers Sum\n8) Largest Prime Factor\n9) Largest Palindrome Product");
+                "\n4) Prime Number Sieve\n5) Fibonacci Sequence\n6) Multiples of 3 and 5\n7) Even Fibonacci Numbers Sum\n8) Largest Prime Factor\n9) Largest Palindrome Product"+
+                "\n10) Smallest Multiple");
             string key = Console.ReadLine();
             switch (key)
             {
@@ -118,6 +119,19 @@ namespace CSharpExercises
                         else
                         {
                             Console.WriteLine("The inputted numbers did not create a palindrome.");
+                        }
+                        break;
+                    }
+                case "10":
+                    {
+                        int smallestMultiple = SmallestMultiple(GetPositiveIntegerInput());
+                        if (smallestMultiple > 0)
+                        {
+                            Console.WriteLine("The smallest multiple is {0}.", smallestMultiple);
+                        }
+                        else
+                        {
+                            Console.WriteLine("There is no smallest multiple.");
                         }
                         break;
                     }
@@ -368,6 +382,30 @@ namespace CSharpExercises
             }
             primeNumList = primeNumList.Except(tempNumList).ToList();
             return primeNumList;
+        }
+
+        public int SmallestMultiple(int input)
+        {
+            bool isDivisible;
+            int smallestMultiple = 0;
+            for (int i = input; i < int.MaxValue; i++)
+            {
+                isDivisible = true;
+                for (int j = input; j > 0; j--)
+                {
+                    if (i % j != 0)
+                    {
+                        isDivisible = false;
+                        break;
+                    }
+                }
+                if (isDivisible)
+                {
+                    smallestMultiple = i;
+                    return smallestMultiple;
+                }
+            }
+            return smallestMultiple;
         }
     }
 }

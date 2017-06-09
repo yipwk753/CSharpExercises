@@ -44,13 +44,14 @@
 
   i`Largest Prime Factor
 1. Get number from user
-2. Create a boolean IsPrime set to true
+2. Create a boolean isPrime set to false
 3. Account for if the user enters 1
 4. Make a for loop with the integer set to the user's number divided by 2
-5. Create an inner loop for any integer's that the user's number is divisible by
-6. In the inner loop, set the integer to the divisible integer divided by 2
-7. If the inner loop's integer is divisible, set the boolean to false and break out of the loop
-8. If the inner loop has finished and the boolean is true, the loop's integer is the largest prime factor
+5. Set the boolean to true
+6. Create an inner loop for any integer's that the user's number is divisible by
+7. In the inner loop, set the integer to the divisible integer divided by 2
+8. If the inner loop's integer is divisible, set the boolean to false and break out of the loop
+9. If the inner loop has finished and the boolean is true, the loop's integer is the largest prime factor
 
   i`Multiples of 3 and 5
 1. Get number from user
@@ -66,6 +67,13 @@
 4. Make a for loop with the integer set to 2 and the boolean condition set to the square root of the iterated number plus 1
 5. If the number is divisible by the integer, add it to a temporary list
 6. Remove all numbers in the temporary list from the first list
+
+  i`Smallest Multiple
+1. Get number from user
+2. Create an integer set to 0 and a boolean set to true
+3. Create a for loop with the boolean condition set to the max for an int
+4. Create an inner loop with integer set to the user's number and the boolean condition set to 0
+5. If the outer integer is divisible by the inner integer, set the boolean to false and break out of the loop
 
   \Strings
   s`Check if a string is a palindrome

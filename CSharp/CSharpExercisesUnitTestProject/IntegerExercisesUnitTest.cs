@@ -61,7 +61,7 @@ namespace CSharpExercisesUnitTestProject
         }
 
         [TestMethod]
-        public void LargestPalindromeProduct()
+        public void LargestPalindromeProductTest()
         {
             Tuple<int, int, bool> tuple = intExercises.LargestPalindromeProduct(999, 99);
             Assert.IsTrue(tuple.Item3);
@@ -91,7 +91,7 @@ namespace CSharpExercisesUnitTestProject
         }
 
         [TestMethod]
-        public void PrimeNumberSieve()
+        public void PrimeNumberSieveTest()
         {
             List<int> primeNumList = new List<int>();
             primeNumList = intExercises.PrimeNumberSieve(12);
@@ -107,6 +107,19 @@ namespace CSharpExercisesUnitTestProject
             Assert.IsFalse(primeNumList.Contains(10));
             Assert.IsTrue(primeNumList.Contains(11));
             Assert.IsFalse(primeNumList.Contains(12));
+        }
+
+        [TestMethod]
+        public void SmallestMultipleTest()
+        {
+            int smallestMultiple = intExercises.SmallestMultiple(10);
+            Assert.AreEqual(smallestMultiple, 2520);
+
+            smallestMultiple = intExercises.SmallestMultiple(3);
+            Assert.AreEqual(smallestMultiple, 6);
+
+            smallestMultiple = intExercises.SmallestMultiple(6);
+            Assert.AreEqual(smallestMultiple, 60);
         }
     }
 }
