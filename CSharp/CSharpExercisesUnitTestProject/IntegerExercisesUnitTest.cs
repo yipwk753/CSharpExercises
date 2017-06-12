@@ -121,5 +121,18 @@ namespace CSharpExercisesUnitTestProject
             smallestMultiple = intExercises.SmallestMultiple(6);
             Assert.AreEqual(smallestMultiple, 60);
         }
+
+        [TestMethod]
+        public void SumSquareDifference()
+        {
+            long difference = intExercises.SumSquareDifferences(10);
+            Assert.AreEqual(difference, 2640);
+
+            difference = intExercises.SumSquareDifferences(1);
+            Assert.AreEqual(difference, 0);
+
+            difference = intExercises.SumSquareDifferences(2);
+            Assert.AreEqual(difference, 4);
+        }
     }
 }

@@ -43,7 +43,7 @@ namespace CSharpExercises
         {
             Console.WriteLine("Enter an integer to choose which method to execute:\n1) FizzBuzz\n2) Check If Number Is Composite\n3) Find LCD Of Two Numbers" +
                 "\n4) Prime Number Sieve\n5) Fibonacci Sequence\n6) Multiples of 3 and 5\n7) Even Fibonacci Numbers Sum\n8) Largest Prime Factor\n9) Largest Palindrome Product"+
-                "\n10) Smallest Multiple");
+                "\n10) Smallest Multiple\n11) Sum Square Difference");
             string key = Console.ReadLine();
             switch (key)
             {
@@ -133,6 +133,13 @@ namespace CSharpExercises
                         {
                             Console.WriteLine("There is no smallest multiple.");
                         }
+                        break;
+                    }
+                case "11":
+                    {
+                        int input = GetPositiveIntegerInput();
+                        long difference = SumSquareDifferences(input);
+                        Console.WriteLine("The difference computed from the input {0} is {1}.", input, difference);
                         break;
                     }
                 default:
@@ -406,6 +413,22 @@ namespace CSharpExercises
                 }
             }
             return smallestMultiple;
+        }
+
+        public long SumSquareDifferences(int input)
+        {
+            long difference = 0;
+            long squareOfTheSum = 0;
+            long sumOfTheSquares = 0;
+            for (int i = 1; i <= input; i++)
+            {
+                squareOfTheSum += i;
+                sumOfTheSquares += (i * i);
+            }
+            squareOfTheSum = squareOfTheSum * squareOfTheSum;
+            difference = squareOfTheSum - sumOfTheSquares;
+
+            return difference;
         }
     }
 }

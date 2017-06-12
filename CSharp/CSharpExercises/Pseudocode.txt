@@ -75,6 +75,15 @@
 4. Create an inner loop with integer set to the user's number and the boolean condition set to 0
 5. If the outer integer is divisible by the inner integer, set the boolean to false and break out of the loop
 
+  i`Sum Square Difference
+1. Get number from user
+2. Create three longs set to 0
+3. Create a for loop with the boolean condition set to the user's number
+4. Each loop, add each number to the second integer and square the result
+5. Each loop, square each number and add it to the first number
+6. Square the first number
+6. Subtract the first integer from the second integer
+
   \Strings
   s`Check if a string is a palindrome
 1. Get string from user
