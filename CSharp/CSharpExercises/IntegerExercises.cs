@@ -31,8 +31,23 @@ namespace CSharpExercises
             Int32.TryParse(Console.ReadLine(), out response);
             if (response <= 0)
             {
-                Console.WriteLine("You did not enter a number, you entered a zero, you entered a negative number, or you entered a number " +
-                    "with a decimal.");
+                Console.WriteLine("You did not enter a number, you entered a zero, you entered a negative number, you entered a number " +
+                    "with a decimal, or you entered a number that exceeded the max possible value.");
+                Console.ReadKey();
+                Environment.Exit(0);
+            }
+            return response;
+        }
+
+        public static long GetPositiveLongInput()
+        {
+            Console.WriteLine("Enter a non-zero positive whole number.");
+            long response = 0;
+            long.TryParse(Console.ReadLine(), out response);
+            if (response <= 0)
+            {
+                Console.WriteLine("You did not enter a number, you entered a zero, you entered a negative number, you entered a number " +
+                    "with a decimal, or you entered a number that exceeded the max possible value.");
                 Console.ReadKey();
                 Environment.Exit(0);
             }
@@ -41,9 +56,9 @@ namespace CSharpExercises
 
         public void ExecuteFunction()
         {
-            Console.WriteLine("Enter an integer to choose which method to execute:\n1) FizzBuzz\n2) Check If Number Is Composite\n3) Find LCD Of Two Numbers" +
+            Console.WriteLine("Enter an integer to choose which method to execute:\n1) FizzBuzz\n2) Get Factors Of Composite Number\n3) Find LCD Of Two Numbers" +
                 "\n4) Prime Number Sieve\n5) Fibonacci Sequence\n6) Multiples of 3 and 5\n7) Even Fibonacci Numbers Sum\n8) Largest Prime Factor\n9) Largest Palindrome Product"+
-                "\n10) Smallest Multiple\n11) Sum Square Difference");
+                "\n10) Smallest Multiple\n11) Sum Square Difference\n12) Check If Number Is Composite\n13) Find N-Prime");
             string key = Console.ReadLine();
             switch (key)
             {
@@ -55,7 +70,7 @@ namespace CSharpExercises
                 case "2":
                     {
                         int input = GetIntegerInput();
-                        List<int> numList = CheckIfCompositeNumber(input);
+                        List<int> numList = GetFactorsOfCompositeNumber(input);
                         if (numList.Count != 0)
                         {
                             Console.WriteLine(input + " is a composite number. Its factor(s) are " + string.Join(", ", numList) + ".");
@@ -139,7 +154,35 @@ namespace CSharpExercises
                     {
                         int input = GetPositiveIntegerInput();
                         long difference = SumSquareDifferences(input);
-                        Console.WriteLine("The difference computed from the input {0} is {1}.", input, difference);
+                        if (difference < 0)
+                        {
+                            Console.WriteLine("The number you entered exceeded the max possible value.");
+                        }
+                        else
+                        { 
+                            Console.WriteLine("The difference computed from the input {0} is {1}.", input, difference);
+                        }
+                        break;
+                    }
+                case "12":
+                    {
+                        int input = GetIntegerInput();
+                        bool isComposite = CheckIfNumberIsComposite(input);
+                        if (isComposite)
+                        {
+                            Console.WriteLine("The number {0} is composite.", input);
+                        }
+                        else
+                        {
+                            Console.WriteLine("The number {0} is not composite.", input);
+                        }
+                        break;
+                    }
+                case "13":
+                    {
+                        int input = GetIntegerInput();
+                        int primeNum = FindNPrime(input);
+                        Console.WriteLine("The {0}st/th prime number is {1}.", input, primeNum);
                         break;
                     }
                 default:
@@ -151,16 +194,17 @@ namespace CSharpExercises
         }
         #endregion
 
-        public List<int> CheckIfCompositeNumber(int input)
+        public bool CheckIfNumberIsComposite(int input)
         {
-            List<int> numList = new List<int>();
+            bool isComposite = false;
             if (input > 0)
             {
                 for (int i = 2; i < (input / 2 + 1); i++)
                 {
                     if (input % i == 0)
                     {
-                        numList.Add(i);
+                        isComposite = true;
+                        break;
                     }
                 }
             }
@@ -170,11 +214,12 @@ namespace CSharpExercises
                 {
                     if (input % i == 0)
                     {
-                        numList.Add(i);
+                        isComposite = true;
+                        break;
                     }
                 }
             }
-            return numList;
+            return isComposite;
         }
 
         public int EvenFibonacciNumbersSum(int input)
@@ -250,6 +295,24 @@ namespace CSharpExercises
             return lcdInt;
         }
 
+        public int FindNPrime(int input)
+        {
+            bool isComposite = false;
+            int primeNum = 0, primeNumCounter = 0, incrementor = 2;
+            while (primeNumCounter < input)
+            {
+                isComposite = CheckIfNumberIsComposite(incrementor);
+                if (!isComposite)
+                {
+                    primeNum = incrementor;
+                    primeNumCounter++;
+                }
+                incrementor++;
+            }
+
+            return primeNum;
+        }
+
         public void FizzBuzz(int input)
         {
             if (input > 0)
@@ -288,6 +351,32 @@ namespace CSharpExercises
                     }
                 }
             }
+        }
+
+        public List<int> GetFactorsOfCompositeNumber(int input)
+        {
+            List<int> numList = new List<int>();
+            if (input > 0)
+            {
+                for (int i = 2; i < (input / 2 + 1); i++)
+                {
+                    if (input % i == 0)
+                    {
+                        numList.Add(i);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = -2; i > (input / 2 - 1); i--)
+                {
+                    if (input % i == 0)
+                    {
+                        numList.Add(i);
+                    }
+                }
+            }
+            return numList;
         }
 
         public Tuple<int, int, bool> LargestPalindromeProduct(int input1, int input2)

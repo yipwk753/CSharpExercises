@@ -1,11 +1,10 @@
 ﻿  \Integers
-  i`Check if a number is composite
+  i`Check If Number Is Composite
 1. Get number from user
-2. Create an empty integer list
+2. Create a boolean set to false
 3. Account for if the user's number is positive or negative
 4. Make a for loop with an integer initialized to 2 and the boolean condition set to the user's number divided by 2 plus or minus 1 depending on the sign of the user's number
-5. If the user's number is divisible by the integer, add the integer to the list
-6. If the list is not empty, the number is composite. Else, it is not.
+5. If the user's number is divisible by the integer, set the boolean to true and break out of the loop
 
   i`Even Fibonacci Numbers
 1. Repeat steps from the Fibonacci Sequence method
@@ -21,6 +20,12 @@
 5. Add the first two integer variables together and assign the result to the third variable and assign it to the int list variable
 6. Assign the second integer to the first and the third integer to the second
 
+  i`Find N-Prime
+1. Get number from user
+2. Create two integers set to 0 and 2
+3. Create a while loop with the boolean condition set to user's number
+4. Each loop check if the 2nd integer is prime; if true assign the value to the 1st integer and increment the 2nd integer
+
   i`Find the least common denominator of two numbers
 1. Get numbers from user
 2. Compare the numbers to see which is smaller and put the smaller one in a temporary variable
@@ -35,6 +40,14 @@
 4. If the integer is divisible by both 5 and 3, write "FizzBuzz"
 5. Else if the integer is divisible by only 5, write "Fizz"
 6. Else if the integer is divisible by only 3, write "Buzz"
+
+  i`Get Factors Of Composite Number
+1. Get number from user
+2. Create an empty integer list
+3. Account for if the user's number is positive or negative
+4. Make a for loop with an integer initialized to 2 and the boolean condition set to the user's number divided by 2 plus or minus 1 depending on the sign of the user's number
+5. If the user's number is divisible by the integer, add the integer to the list
+6. If the list is not empty, the number is composite. Else, it is not.
 
   i`Largest palindrome product
 1. Get two numbers from user
@@ -83,6 +96,7 @@
 5. Each loop, square each number and add it to the first number
 6. Square the first number
 6. Subtract the first integer from the second integer
+7. Account for numbers that exceed the max possible value
 
   \Strings
   s`Check if a string is a palindrome

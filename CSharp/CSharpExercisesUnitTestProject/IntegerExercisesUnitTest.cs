@@ -11,14 +11,16 @@ namespace CSharpExercisesUnitTestProject
         IntegerExercises intExercises = new IntegerExercises();
 
         [TestMethod]
-        public void CheckIfCompositeNumberTest()
+        public void CheckIfNumberIsCompositeTest()
         {
-            List<int> numList = new List<int>();
-            numList = intExercises.CheckIfCompositeNumber(10);
-            Assert.IsTrue(numList.Count > 0);
+            bool isComposite = intExercises.CheckIfNumberIsComposite(8);
+            Assert.IsTrue(isComposite);
 
-            numList = intExercises.CheckIfCompositeNumber(7);
-            Assert.IsTrue(numList.Count == 0);
+            isComposite = intExercises.CheckIfNumberIsComposite(7);
+            Assert.IsFalse(isComposite);
+
+            isComposite = intExercises.CheckIfNumberIsComposite(2);
+            Assert.IsFalse(isComposite);
         }
 
         [TestMethod]
@@ -58,6 +60,27 @@ namespace CSharpExercisesUnitTestProject
 
             lcdNum = intExercises.FindLeastCommonDenominator(1, 4);
             Assert.IsTrue(lcdNum == 4);
+        }
+
+        [TestMethod]
+        public void FindNPrimeTest()
+        {
+            int primeNum = intExercises.FindNPrime(5);
+            Assert.AreEqual(primeNum, 11);
+
+            primeNum = intExercises.FindNPrime(1);
+            Assert.AreEqual(primeNum, 2);
+        }
+
+        [TestMethod]
+        public void GetFactorsOfCompositeNumberTest()
+        {
+            List<int> numList = new List<int>();
+            numList = intExercises.GetFactorsOfCompositeNumber(10);
+            Assert.IsTrue(numList.Count > 0);
+
+            numList = intExercises.GetFactorsOfCompositeNumber(7);
+            Assert.IsTrue(numList.Count == 0);
         }
 
         [TestMethod]
