@@ -66,6 +66,17 @@
 8. If the inner loop's integer is divisible, set the boolean to false and break out of the loop
 9. If the inner loop has finished and the boolean is true, the loop's integer is the largest prime factor
 
+  i`Largest Product In Series
+1. Get a string of numbers and a number from user
+2. Account for if the user's second number is greater than the count of the string
+3. Create two longs set to 0
+4. Create array of N-size where N is the user's string length and with a for loop populate each slot with the character in the string's N-location converted to an int
+5. Create a for loop with the boolean condition set to the user's string length minus the user's second number plus 1
+6. Set the second integer to 1
+7. Each loop, create an inner for loop to multiply the array's current cell with the next N-1 cells where N is the user's number
+8. After the inner loop has finished, if the product is greater than the integer, assign the value to the first integer
+9. Account for if stack overflow occurs
+
   i`Multiples of 3 and 5
 1. Get number from user
 2. Account for if the user's number is positive or negative
@@ -96,7 +107,7 @@
 5. Each loop, square each number and add it to the first number
 6. Square the first number
 6. Subtract the first integer from the second integer
-7. Account for numbers that exceed the max possible value
+7. Account for if stack overflow occurs
 
   \Strings
   s`Check if a string is a palindrome

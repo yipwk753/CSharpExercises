@@ -24,6 +24,14 @@ namespace CSharpExercises
             return response;
         }
 
+        public static string GetIntegerStringInput()
+        {
+            Console.WriteLine("Enter a series of numbers.");
+            string response = Console.ReadLine();
+
+            return response;
+        }
+
         public static int GetPositiveIntegerInput()
         {
             Console.WriteLine("Enter a non-zero positive whole number.");
@@ -58,7 +66,7 @@ namespace CSharpExercises
         {
             Console.WriteLine("Enter an integer to choose which method to execute:\n1) FizzBuzz\n2) Get Factors Of Composite Number\n3) Find LCD Of Two Numbers" +
                 "\n4) Prime Number Sieve\n5) Fibonacci Sequence\n6) Multiples of 3 and 5\n7) Even Fibonacci Numbers Sum\n8) Largest Prime Factor\n9) Largest Palindrome Product"+
-                "\n10) Smallest Multiple\n11) Sum Square Difference\n12) Check If Number Is Composite\n13) Find N-Prime");
+                "\n10) Smallest Multiple\n11) Sum Square Difference\n12) Check If Number Is Composite\n13) Find N-Prime\n14) Largest Product In Series");
             string key = Console.ReadLine();
             switch (key)
             {
@@ -183,6 +191,22 @@ namespace CSharpExercises
                         int input = GetIntegerInput();
                         int primeNum = FindNPrime(input);
                         Console.WriteLine("The {0}st/th prime number is {1}.", input, primeNum);
+                        break;
+                    }
+                case "14":
+                    {
+                        string numSeries = GetIntegerStringInput();
+                        int numOfAdjacentDigits = GetPositiveIntegerInput();
+                        long product = LargestProductInSeries(numSeries, numOfAdjacentDigits);
+                        if (product < 0)
+                        {
+                            Console.WriteLine("Either the second number you entered is larger than the length of the series of numbers you entered or the "
+                                + "product exceeded the max possible value.");
+                        }
+                        else
+                        { 
+                            Console.WriteLine("The largest product in the series derived from {0} adjacent digits is {1}.", numOfAdjacentDigits, product);
+                        }
                         break;
                     }
                 default:
@@ -432,6 +456,34 @@ namespace CSharpExercises
                 }
             }
             return primeFactor;
+        }
+
+        public long LargestProductInSeries(string numSeries, int numOfAdjacentDigits)
+        {
+            if (numOfAdjacentDigits > numSeries.Length)
+            {
+                return -1;
+            }
+            long product = 0, tempProduct = 0;
+            int stringCount = numSeries.Length;
+            int[] numArray = new int[stringCount];
+            for (int i = 0; i < stringCount; i++)
+            {
+                numArray[i] = (int)Char.GetNumericValue(numSeries[i]);
+            }
+            for (int i = 0; i < stringCount - numOfAdjacentDigits + 1; i++)
+            {
+                tempProduct = 1;
+                for (int j = 0; j < numOfAdjacentDigits; j++)
+                {
+                    tempProduct *= numArray[i + j];
+                }
+                if (tempProduct > product)
+                {
+                    product = tempProduct;
+                }
+            }
+            return product;
         }
 
         public int MultiplesOf3And5(int input)
