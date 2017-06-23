@@ -209,6 +209,21 @@ namespace CSharpExercises
                         }
                         break;
                     }
+                case "15":
+                    {
+                        int input = GetPositiveIntegerInput();
+                        var pythagoreanTriplet = FindPythagoreanTriplet(input);
+                        if (pythagoreanTriplet.Item5)
+                        {
+                            Console.WriteLine("Your input produced the pythagorean triplet of a: {0}, b: {1}, and c: {2} with a product of {3}", 
+                                pythagoreanTriplet.Item1, pythagoreanTriplet.Item2, pythagoreanTriplet.Item3, pythagoreanTriplet.Item4);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Your input did not produce a pythagorean triplet.");
+                        }
+                        break;
+                    }
                 default:
                     {
                         Console.WriteLine("You entered a number unassociated with the methods.");
@@ -335,6 +350,34 @@ namespace CSharpExercises
             }
 
             return primeNum;
+        }
+
+        public Tuple<int, int, int, int, bool> FindPythagoreanTriplet(int input)
+        {
+            bool isPerfectSquare = false;
+            double square = 0;
+            int aSide = 0, bSide = 1, cSide = 0, product = 0;
+            for (aSide = 2; aSide + bSide + cSide <= input; aSide++)
+            {
+                for (bSide = aSide + 1; aSide + bSide + cSide <= input; bSide++)
+                {
+                    square = Math.Sqrt(aSide * aSide + bSide * bSide);
+                    if ((int)Math.Ceiling(square) == (int)Math.Floor(square))
+                    {
+                        cSide = (int)square;
+
+                        if (aSide + bSide + cSide == input)
+                        {
+                            product = aSide * bSide * cSide;
+                            isPerfectSquare = true;
+                            return Tuple.Create(aSide, bSide, cSide, product, isPerfectSquare);
+                        }
+                    }
+                }
+                bSide = aSide + 1;
+            }
+
+            return Tuple.Create(0, 0, 0, 0, isPerfectSquare);
         }
 
         public void FizzBuzz(int input)

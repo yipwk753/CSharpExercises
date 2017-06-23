@@ -26,6 +26,16 @@
 3. Create a while loop with the boolean condition set to user's number
 4. Each loop check if the 2nd integer is prime; if true assign the value to the 1st integer and increment the 2nd integer
 
+  i`Find Pythagorean Triplet
+1. Get number from user
+2. Create 4 integers and a double set to 0 and a boolean set to false
+3. Create a for loop with the first integer set to 2 as the initializer and the boolean condition set to 3 of the integers added together being greater than the user's number
+4. Create an inner for loop with the second integer set as the initializer and the boolean condition set to 3 of the integers added together being greater than the user's number
+5. Each loop, square root the squares of the first 2 integers added together
+6. If the squared integers from the two loops produced a perfect square, assign the square to the third integer
+7. If all three integer's added together equal the user's number, set the boolean to true and multiply the three together and assign the result to the fourth integer; return all 4 integers and the boolean
+8. If the inner loop completes, assign the first integer plus 1 to the second integer
+
   i`Find the least common denominator of two numbers
 1. Get numbers from user
 2. Compare the numbers to see which is smaller and put the smaller one in a temporary variable

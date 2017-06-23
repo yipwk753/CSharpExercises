@@ -73,6 +73,17 @@ namespace CSharpExercisesUnitTestProject
         }
 
         [TestMethod]
+        public void FindPythagoreanTripletTest()
+        {
+            var pythagoreanTriplet = intExercises.FindPythagoreanTriplet(12);
+            Assert.AreEqual(3, pythagoreanTriplet.Item1);
+            Assert.AreEqual(4, pythagoreanTriplet.Item2);
+            Assert.AreEqual(5, pythagoreanTriplet.Item3);
+            Assert.AreEqual(60, pythagoreanTriplet.Item4);
+            Assert.IsTrue(pythagoreanTriplet.Item5);
+        }
+
+        [TestMethod]
         public void GetFactorsOfCompositeNumberTest()
         {
             List<int> numList = new List<int>();
