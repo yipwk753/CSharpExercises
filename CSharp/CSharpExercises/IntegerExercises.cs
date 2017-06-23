@@ -66,7 +66,8 @@ namespace CSharpExercises
         {
             Console.WriteLine("Enter an integer to choose which method to execute:\n1) FizzBuzz\n2) Get Factors Of Composite Number\n3) Find LCD Of Two Numbers" +
                 "\n4) Prime Number Sieve\n5) Fibonacci Sequence\n6) Multiples of 3 and 5\n7) Even Fibonacci Numbers Sum\n8) Largest Prime Factor\n9) Largest Palindrome Product"+
-                "\n10) Smallest Multiple\n11) Sum Square Difference\n12) Check If Number Is Composite\n13) Find N-Prime\n14) Largest Product In Series");
+                "\n10) Smallest Multiple\n11) Sum Square Difference\n12) Check If Number Is Composite\n13) Find N-Prime\n14) Largest Product In Series\n15) Find Pythagorean Triplet"+
+                "\n16)Summation Of Primes");
             string key = Console.ReadLine();
             switch (key)
             {
@@ -222,6 +223,13 @@ namespace CSharpExercises
                         {
                             Console.WriteLine("Your input did not produce a pythagorean triplet.");
                         }
+                        break;
+                    }
+                case "16":
+                    {
+                        int input = GetPositiveIntegerInput();
+                        long sum = SummationOfPrimes(input);
+                        Console.WriteLine("The sum of the primes derived from the input {0} is {1}.", input, sum);
                         break;
                     }
                 default:
@@ -597,6 +605,21 @@ namespace CSharpExercises
                 }
             }
             return smallestMultiple;
+        }
+
+        //this runs very slowly for large inputs, implement a better algorithm in the future
+        public long SummationOfPrimes(int input)
+        {
+            long sum = 0;
+            for (int j = 2; j <= input; j++)
+            {
+                bool isComposite = CheckIfNumberIsComposite(j);
+                if (!isComposite)
+                {
+                    sum += j;
+                }
+            }
+            return sum;
         }
 
         public long SumSquareDifferences(int input)

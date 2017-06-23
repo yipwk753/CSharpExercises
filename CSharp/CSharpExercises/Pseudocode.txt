@@ -119,6 +119,12 @@
 6. Subtract the first integer from the second integer
 7. Account for if stack overflow occurs
 
+  i`Summation Of Primes
+1. Get number from user
+2. Create an integer set to 0
+3. Create a for loop with the integer set to 2 and the boolean condition set to the user's number
+4. If the loop's integer is prime, add it to the integer created in step 2
+
   \Strings
   s`Check if a string is a palindrome
 1. Get string from user

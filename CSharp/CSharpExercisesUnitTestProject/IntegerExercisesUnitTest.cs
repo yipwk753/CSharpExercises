@@ -192,7 +192,14 @@ namespace CSharpExercisesUnitTestProject
         }
 
         [TestMethod]
-        public void SumSquareDifference()
+        public void SummationOfPrimesTest()
+        {
+            long sum = intExercises.SummationOfPrimes(10);
+            Assert.AreEqual(sum, 17);
+        }
+
+        [TestMethod]
+        public void SumSquareDifferenceTest()
         {
             long difference = intExercises.SumSquareDifferences(10);
             Assert.AreEqual(difference, 2640);
