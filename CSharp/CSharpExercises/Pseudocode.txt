@@ -76,6 +76,11 @@
 8. If the inner loop's integer is divisible, set the boolean to false and break out of the loop
 9. If the inner loop has finished and the boolean is true, the loop's integer is the largest prime factor
 
+  i`Largest Product In A Grid
+1. Get number from user
+2. Generate grid based on user's number
+3. Create 9 integers set to 0
+
   i`Largest Product In Series
 1. Get a string of numbers and a number from user
 2. Account for if the user's second number is greater than the count of the string
@@ -126,6 +131,12 @@
 4. If the loop's integer is prime, add it to the integer created in step 2
 
   \Strings
+  s`Add Letters
+1. Get string from user
+2. Create dictionary to hold the values for each letter, A=1, B=2, etc.
+3. Create an integer set to 0
+4. Loop through the string, if the value is a key in the dictionary, add the key's value to the integer
+
   s`Check if a string is a palindrome
 1. Get string from user
 2. Create a boolean and set it to false

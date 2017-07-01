@@ -10,6 +10,19 @@ namespace CSharpExercisesUnitTestProject
         StringExercises strExercises = new StringExercises();
 
         [TestMethod]
+        public void AddLettersTest()
+        {
+            int sum = strExercises.AddLetters("Hello");
+            Assert.AreEqual(sum, 52);
+
+            sum = strExercises.AddLetters("0123456789");
+            Assert.AreEqual(sum, 0);
+
+            sum = strExercises.AddLetters("1234 !@ -=+   z");
+            Assert.AreEqual(sum, 26);
+        }
+
+        [TestMethod]
         public void CheckIsPalindromeTest()
         {
             bool isPalindrome = false;

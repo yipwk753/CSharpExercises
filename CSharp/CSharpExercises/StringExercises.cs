@@ -24,7 +24,8 @@ namespace CSharpExercises
 
         public void ExecuteFunction()
         {
-            Console.WriteLine("Enter an integer to choose which method to execute:\n1) Reverse String\n2) Check If Number Is A Palindrome\n3) Count Vowels\n4) Reverse Sentence");
+            Console.WriteLine("Enter an integer to choose which method to execute:\n1) Reverse String\n2) Check If Number Is A Palindrome\n3) Count Vowels\n4) Reverse Sentence"
+                + "\n5) Add Letters");
             string key = Console.ReadLine();
             switch (key)
             {
@@ -63,6 +64,13 @@ namespace CSharpExercises
                         Console.WriteLine(response + " reversed is " + reversed);
                         break;
                     }
+                case "5":
+                    {
+                        string response = GetStringInput();
+                        int sum = AddLetters(response);
+                        Console.WriteLine("The value of the letters in \"{0}\" is {1}.", response, sum);
+                        break;
+                    }
                 default:
                     {
                         Console.WriteLine("You entered a number unassociated with the methods.");
@@ -71,6 +79,49 @@ namespace CSharpExercises
             }
         }
         #endregion
+
+        public int AddLetters(string response)
+        {
+            Dictionary<char, int> letters = new Dictionary<char, int>
+            {
+                { 'a', 1 },
+                { 'b', 2 },
+                { 'c', 3 },
+                { 'd', 4 },
+                { 'e', 5 },
+                { 'f', 6 },
+                { 'g', 7 },
+                { 'h', 8 },
+                { 'i', 9 },
+                { 'j', 10 },
+                { 'k', 11 },
+                { 'l', 12 },
+                { 'm', 13 },
+                { 'n', 14 },
+                { 'o', 15 },
+                { 'p', 16 },
+                { 'q', 17 },
+                { 'r', 18 },
+                { 's', 19 },
+                { 't', 20 },
+                { 'u', 21 },
+                { 'v', 22 },
+                { 'w', 23 },
+                { 'x', 24 },
+                { 'y', 25 },
+                { 'z', 26 }
+            };
+            int sum = 0;
+            foreach (char letter in response.ToLower())
+            {
+                if (letters.Keys.Contains(letter))
+                {
+                    sum += letters[letter];
+                }
+            }
+
+            return sum;
+        }
 
         public bool CheckIsPalindrome(string response)
         {
