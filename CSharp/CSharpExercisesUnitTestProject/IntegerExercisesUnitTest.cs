@@ -115,6 +115,39 @@ namespace CSharpExercisesUnitTestProject
         }
 
         [TestMethod]
+        public void LargestProductInAGridTest()
+        {
+            int[,] grid = new int[5,5];
+            grid[0, 0] = 2;
+            grid[0, 1] = 44;
+            grid[0, 2] = 75;
+            grid[0, 3] = 33;
+            grid[0, 4] = 53;
+            grid[1, 0] = 10;
+            grid[1, 1] = 26;
+            grid[1, 2] = 38;
+            grid[1, 3] = 40;
+            grid[1, 4] = 67;
+            grid[2, 0] = 20;
+            grid[2, 1] = 95;
+            grid[2, 2] = 63;
+            grid[2, 3] = 94;
+            grid[2, 4] = 39;
+            grid[3, 0] = 26;
+            grid[3, 1] = 97;
+            grid[3, 2] = 17;
+            grid[3, 3] = 78;
+            grid[3, 4] = 78;
+            grid[4, 0] = 44;
+            grid[4, 1] = 20;
+            grid[4, 2] = 45;
+            grid[4, 3] = 35;
+            grid[4, 4] = 14;
+            long product = intExercises.LargestProductInAGrid(grid, 4);
+            Assert.AreEqual(product, 1788696);
+        }
+
+        [TestMethod]
         public void LargestProductInSeriesTest()
         {
             string numSeries = @"

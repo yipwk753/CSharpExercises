@@ -77,9 +77,13 @@
 9. If the inner loop has finished and the boolean is true, the loop's integer is the largest prime factor
 
   i`Largest Product In A Grid
-1. Get number from user
-2. Generate grid based on user's number
-3. Create 9 integers set to 0
+1. Get 3 numbers from user
+2. Generate grid based on user's first and second numbers
+3. Create 2 integers based on the grid, 2 longs set to 0 and 1 string
+4. Loop through the grid based on the user's third number multiplying the adjacent numbers in the same direction
+5. If the product generated is greater than a previous product, assign it to the integer
+6. If the user's third number has an adjacent number that equals the right-most or bottom-most number, go to the next line
+7. ...switch statement?
 
   i`Largest Product In Series
 1. Get a string of numbers and a number from user

@@ -9,6 +9,34 @@ namespace CSharpExercises
     public class IntegerExercises
     {
         #region Helper Methods
+        public static int[,] GenerateGrid()
+        {
+            Console.WriteLine("Enter a non-zero whole number.");
+            int arrayLeftInit = 0;
+            Int32.TryParse(Console.ReadLine(), out arrayLeftInit);
+
+            Console.WriteLine("Enter a non-zero whole number.");
+            int arrayRightInit = 0;
+            Int32.TryParse(Console.ReadLine(), out arrayRightInit);
+            if (arrayLeftInit == 0 || arrayRightInit == 0)
+            {
+                Console.WriteLine("For one or both inputs, you did not enter a number, you entered a zero, or you entered a number " +
+                    "with a decimal.");
+                Console.ReadKey();
+                Environment.Exit(0);
+            }
+            int[,] grid = new int[arrayLeftInit, arrayRightInit];
+            Random rand = new Random();
+            for(int j = 0; j < arrayLeftInit; j++)
+            {
+                for(int k = 0; k < arrayRightInit; k++)
+                {
+                    grid[arrayLeftInit, arrayRightInit] = rand.Next(0, 99);
+                }
+            }
+            return grid;
+        }
+
         public static int GetIntegerInput()
         {
             Console.WriteLine("Enter a non-zero whole number.");
@@ -67,7 +95,7 @@ namespace CSharpExercises
             Console.WriteLine("Enter an integer to choose which method to execute:\n1) FizzBuzz\n2) Get Factors Of Composite Number\n3) Find LCD Of Two Numbers" +
                 "\n4) Prime Number Sieve\n5) Fibonacci Sequence\n6) Multiples of 3 and 5\n7) Even Fibonacci Numbers Sum\n8) Largest Prime Factor\n9) Largest Palindrome Product"+
                 "\n10) Smallest Multiple\n11) Sum Square Difference\n12) Check If Number Is Composite\n13) Find N-Prime\n14) Largest Product In Series\n15) Find Pythagorean Triplet"+
-                "\n16)Summation Of Primes");
+                "\n16)Summation Of Primes\n17) Largest Product In A Grid");
             string key = Console.ReadLine();
             switch (key)
             {
@@ -230,6 +258,14 @@ namespace CSharpExercises
                         int input = GetPositiveIntegerInput();
                         long sum = SummationOfPrimes(input);
                         Console.WriteLine("The sum of the primes derived from the input {0} is {1}.", input, sum);
+                        break;
+                    }
+                case "17":
+                    {
+                        int[,] grid = GenerateGrid();
+                        int adjacentNumbers = GetPositiveIntegerInput();
+                        long product = LargestProductInAGrid(grid, adjacentNumbers);
+                        Console.WriteLine("The largest product in the grid is " + product);
                         break;
                     }
                 default:
@@ -507,6 +543,36 @@ namespace CSharpExercises
                 }
             }
             return primeFactor;
+        }
+
+        public long LargestProductInAGrid(int[,] grid, int adjacentNumbers)
+        {
+            int arrayLeftInit = grid.GetLength(0);
+            int arrayRightInit = grid.GetLength(1);
+            long product = 0;
+            long tempProduct = 1;
+            string gridDetails;
+            for (int i = 0; i < arrayLeftInit; i++)
+            {
+                for (int j = 0; j <= arrayRightInit - adjacentNumbers; j++)
+                {
+                    //left to right
+                    tempProduct = 1;
+                    for (int k = 0; k < adjacentNumbers; k++)
+                    {
+                        tempProduct *= grid[i, k];
+                    }
+                    if (tempProduct > product)
+                    {
+                        product = tempProduct;
+                    }
+                    //top to bottom
+
+                    //diagonal
+                }
+            }
+
+            return product;
         }
 
         public long LargestProductInSeries(string numSeries, int numOfAdjacentDigits)
