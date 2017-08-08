@@ -552,23 +552,43 @@ namespace CSharpExercises
             long product = 0;
             long tempProduct = 1;
             string gridDetails;
-            for (int i = 0; i < arrayLeftInit; i++)
+            //left to right from top to bottom
+            for (int i = 0; i < arrayLeftInit - 1; i++)
             {
-                for (int j = 0; j <= arrayRightInit - adjacentNumbers; j++)
+                tempProduct = 1;
+                for (int j = 0; j < arrayRightInit - (arrayRightInit - adjacentNumbers); j++)
                 {
-                    //left to right
-                    tempProduct = 1;
-                    for (int k = 0; k < adjacentNumbers; k++)
-                    {
-                        tempProduct *= grid[i, k];
-                    }
-                    if (tempProduct > product)
-                    {
-                        product = tempProduct;
-                    }
-                    //top to bottom
-
-                    //diagonal
+                    tempProduct *= grid[i, j];
+                }
+                if (tempProduct > product)
+                {
+                    product = tempProduct;
+                }
+            }
+            //top to bottom from left to right
+            for (int i = 0; i < arrayRightInit - 1; i--)
+            {
+                tempProduct = 1;
+                for (int j = 0; j < arrayLeftInit - (arrayLeftInit - adjacentNumbers); j++)
+                {
+                    tempProduct *= grid[i, j];
+                }
+                if (tempProduct > product)
+                {
+                    product = tempProduct;
+                }
+            }
+            //diagonal left to right from top to bottom
+            for (int i = 0; i < arrayLeftInit - 1; i++)
+            {
+                tempProduct = 1;
+                for (int j = 0; j + adjacentNumbers < arrayRightInit - 1; j++)
+                {
+                    tempProduct *= grid[i, j];
+                }
+                if (tempProduct > product)
+                {
+                    product = tempProduct;
                 }
             }
 
