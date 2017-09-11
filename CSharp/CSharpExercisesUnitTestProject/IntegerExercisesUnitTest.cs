@@ -115,9 +115,60 @@ namespace CSharpExercisesUnitTestProject
         }
 
         [TestMethod]
-        public void LargestProductInAGridTest()
+        public void LargestProductInA1X1GridTest()
         {
-            int[,] grid = new int[5,5];
+            int[,] grid = new int[1, 1];
+            grid[0, 0] = 5;
+            int adjacentNumbers = 1;
+            GridDetails gridDetails = intExercises.LargestProductInAGrid(grid, adjacentNumbers);
+            Assert.AreEqual("None", gridDetails.Direction);
+            Assert.AreEqual(5, gridDetails.Product);
+            Assert.AreEqual(5, gridDetails.GridValues[0]);
+            Assert.AreEqual("[0,0]", gridDetails.GridIndexes[0]);
+        }
+
+        [TestMethod]
+        public void LargestProductInA1X5GridTest()
+        {
+            int[,] grid = new int[1, 5];
+            grid[0, 0] = 2;
+            grid[0, 1] = 44;
+            grid[0, 2] = 75;
+            grid[0, 3] = 33;
+            grid[0, 4] = 53;
+            int adjacentNumbers = 2;
+            GridDetails gridDetails = intExercises.LargestProductInAGrid(grid, adjacentNumbers);
+            Assert.AreEqual("Horizontal", gridDetails.Direction);
+            Assert.AreEqual(3300, gridDetails.Product);
+            Assert.AreEqual(44, gridDetails.GridValues[0]);
+            Assert.AreEqual(75, gridDetails.GridValues[1]);
+            Assert.AreEqual("[0,1]", gridDetails.GridIndexes[0]);
+            Assert.AreEqual("[0,2]", gridDetails.GridIndexes[1]);
+        }
+
+        [TestMethod]
+        public void LargestProductInA5X1GridTest()
+        {
+            int[,] grid = new int[5, 1];
+            grid[0, 0] = 2;
+            grid[1, 0] = 44;
+            grid[2, 0] = 75;
+            grid[3, 0] = 33;
+            grid[4, 0] = 53;
+            int adjacentNumbers = 2;
+            GridDetails gridDetails = intExercises.LargestProductInAGrid(grid, adjacentNumbers);
+            Assert.AreEqual("Vertical", gridDetails.Direction);
+            Assert.AreEqual(3300, gridDetails.Product);
+            Assert.AreEqual(44, gridDetails.GridValues[0]);
+            Assert.AreEqual(75, gridDetails.GridValues[1]);
+            Assert.AreEqual("[1,0]", gridDetails.GridIndexes[0]);
+            Assert.AreEqual("[2,0]", gridDetails.GridIndexes[1]);
+        }
+
+        [TestMethod]
+        public void LargestProductInA5X5GridTest()
+        {
+            int[,] grid = new int[5, 5];
             grid[0, 0] = 2;
             grid[0, 1] = 44;
             grid[0, 2] = 75;
@@ -143,8 +194,10 @@ namespace CSharpExercisesUnitTestProject
             grid[4, 2] = 45;
             grid[4, 3] = 35;
             grid[4, 4] = 14;
-            long product = intExercises.LargestProductInAGrid(grid, 4);
-            Assert.AreEqual(product, 1788696);
+            int adjacentNumbers = 4;
+            GridDetails gridDetails = intExercises.LargestProductInAGrid(grid, adjacentNumbers);
+            Assert.AreEqual(21941010, gridDetails.Product);
+            Assert.AreEqual("Horizontal", gridDetails.Direction);
         }
 
         [TestMethod]
@@ -176,7 +229,7 @@ namespace CSharpExercisesUnitTestProject
             Assert.AreEqual(product, 5832);
 
             product = intExercises.LargestProductInSeries(numSeries, 13);
-            Assert.AreEqual(product, 2091059712);
+            Assert.AreEqual(product, 5377010688);
 
             product = intExercises.LargestProductInSeries("1234", 3);
             Assert.AreEqual(product, 24);

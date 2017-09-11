@@ -6,9 +6,28 @@ using System.Threading.Tasks;
 
 namespace CSharpExercises
 {
+    public struct GridDetails
+    {
+        public int[] GridTempValues;
+        public int[] GridValues;
+        public long Product;
+        public string Direction;
+        public string[] GridIndexes;
+        public string[] GridTempIndexes;
+    }
+
     public class IntegerExercises
     {
         #region Helper Methods
+        static void AlterGridDetails(ref GridDetails gridDetails, int adjacentNumbers, ref long product, long tempProduct, string direction)
+        {
+            product = tempProduct;
+            Array.Copy(gridDetails.GridTempIndexes, gridDetails.GridIndexes, adjacentNumbers);
+            Array.Copy(gridDetails.GridTempValues, gridDetails.GridValues, adjacentNumbers);
+            gridDetails.Product = product;
+            gridDetails.Direction = direction;
+        }
+
         public static int[,] GenerateGrid()
         {
             Console.WriteLine("Enter a non-zero whole number.");
@@ -264,8 +283,9 @@ namespace CSharpExercises
                     {
                         int[,] grid = GenerateGrid();
                         int adjacentNumbers = GetPositiveIntegerInput();
-                        long product = LargestProductInAGrid(grid, adjacentNumbers);
-                        Console.WriteLine("The largest product in the grid is " + product);
+                        GridDetails gridDetails = LargestProductInAGrid(grid, adjacentNumbers);
+                        Console.WriteLine("The largest product in the grid is " + gridDetails.Product);
+                        Console.WriteLine("The direction used to derive the largest product is " + gridDetails.Direction);
                         break;
                     }
                 default:
@@ -545,54 +565,135 @@ namespace CSharpExercises
             return primeFactor;
         }
 
-        public long LargestProductInAGrid(int[,] grid, int adjacentNumbers)
+        public GridDetails LargestProductInAGrid(int[,] grid, int adjacentNumbers)
         {
-            int arrayLeftInit = grid.GetLength(0);
-            int arrayRightInit = grid.GetLength(1);
+            int arrayLeftLength = grid.GetLength(0);
+            int arrayRightLength = grid.GetLength(1);
+            if (adjacentNumbers > arrayLeftLength && adjacentNumbers > arrayRightLength)
+            {
+                Console.WriteLine("The adjacent number is greater than the bounds of the array.");
+                Environment.Exit(0);
+            }
+
             long product = 0;
             long tempProduct = 1;
-            string gridDetails;
-            //left to right from top to bottom
-            for (int i = 0; i < arrayLeftInit - 1; i++)
+
+            GridDetails gridDetails = new GridDetails();
+            if (arrayLeftLength == 1 && arrayRightLength == 1)
             {
-                tempProduct = 1;
-                for (int j = 0; j < arrayRightInit - (arrayRightInit - adjacentNumbers); j++)
+                gridDetails.Direction = "None";
+                gridDetails.Product = grid[0, 0];
+                gridDetails.GridIndexes = new string[1];
+                gridDetails.GridIndexes[0] = "[" + 0 + "," + 0 + "]";
+                gridDetails.GridValues = new int[1];
+                gridDetails.GridValues[0] = grid[0, 0];
+                return gridDetails;
+            }
+
+            gridDetails.GridIndexes = new string[adjacentNumbers];
+            gridDetails.GridTempValues = new int[adjacentNumbers];
+            gridDetails.GridTempIndexes = new string[adjacentNumbers];
+            gridDetails.GridValues = new int[adjacentNumbers];
+
+            if (arrayRightLength > 1 && arrayRightLength > adjacentNumbers)
+            {
+                //left to right starting from top to bottom
+                for (int leftIndex = 0; leftIndex < arrayLeftLength; leftIndex++)
                 {
-                    tempProduct *= grid[i, j];
-                }
-                if (tempProduct > product)
-                {
-                    product = tempProduct;
+                    int tempRightLength = 0;
+                    while (tempRightLength <= arrayRightLength - adjacentNumbers)
+                    {
+                        tempProduct = 1;
+                        for (int rightIndex = tempRightLength, iterator = 0; iterator < adjacentNumbers; rightIndex++, iterator++)
+                        {
+                            tempProduct *= grid[leftIndex, rightIndex];
+                            gridDetails.GridTempIndexes[iterator] = "[" + leftIndex + "," + rightIndex + "]";
+                            gridDetails.GridTempValues[iterator] = grid[leftIndex, rightIndex];
+                        }
+                        if (tempProduct > product)
+                        {
+                            AlterGridDetails(ref gridDetails, adjacentNumbers, ref product, tempProduct, "Horizontal");
+                        }
+                        Array.Clear(gridDetails.GridTempIndexes, 0, gridDetails.GridTempIndexes.Length);
+                        Array.Clear(gridDetails.GridTempValues, 0, gridDetails.GridTempValues.Length);
+                        tempRightLength++;
+                    }
                 }
             }
-            //top to bottom from left to right
-            for (int i = 0; i < arrayRightInit - 1; i--)
+            if (arrayLeftLength > 1 && arrayLeftLength > adjacentNumbers)
             {
-                tempProduct = 1;
-                for (int j = 0; j < arrayLeftInit - (arrayLeftInit - adjacentNumbers); j++)
+                //top to bottom starting from left to right
+                for (int rightIndex = 0; rightIndex < arrayRightLength; rightIndex++)
                 {
-                    tempProduct *= grid[i, j];
-                }
-                if (tempProduct > product)
-                {
-                    product = tempProduct;
+                    int tempLeftLength = 0;
+                    while (tempLeftLength <= arrayLeftLength - adjacentNumbers)
+                    {
+                        tempProduct = 1;
+                        for (int leftIndex = tempLeftLength, iterator = 0; iterator < adjacentNumbers; leftIndex++, iterator++)
+                        {
+                            tempProduct *= grid[leftIndex, rightIndex];
+                            gridDetails.GridTempIndexes[iterator] = "[" + leftIndex + "," + rightIndex + "]";
+                            gridDetails.GridTempValues[iterator] = grid[leftIndex, rightIndex];
+                        }
+                        if (tempProduct > product)
+                        {
+                            AlterGridDetails(ref gridDetails, adjacentNumbers, ref product, tempProduct, "Vertical");
+                        }
+                        Array.Clear(gridDetails.GridTempIndexes, 0, gridDetails.GridTempIndexes.Length);
+                        Array.Clear(gridDetails.GridTempValues, 0, gridDetails.GridTempValues.Length);
+                        tempLeftLength++;
+                    }
                 }
             }
-            //diagonal left to right from top to bottom
-            for (int i = 0; i < arrayLeftInit - 1; i++)
+            if (arrayLeftLength > 1 && arrayRightLength > 1)
             {
-                tempProduct = 1;
-                for (int j = 0; j + adjacentNumbers < arrayRightInit - 1; j++)
+                //diagonal left to right starting from top to bottom
+                for (int leftIndex = 0; leftIndex <= arrayLeftLength - adjacentNumbers; leftIndex++)
                 {
-                    tempProduct *= grid[i, j];
+                    int tempRightindex = 0;
+                    while (tempRightindex <= arrayRightLength - adjacentNumbers)
+                    {
+                        tempProduct = 1;
+                        for (int rightIndex = tempRightindex, iterator = 0; iterator < adjacentNumbers; rightIndex++, iterator++)
+                        {
+                            tempProduct *= grid[leftIndex + iterator, rightIndex];
+                            gridDetails.GridTempIndexes[iterator] = "[" + (leftIndex + iterator) + "," + rightIndex + "]";
+                            gridDetails.GridTempValues[iterator] = grid[leftIndex + iterator, rightIndex];
+                        }
+                        if (tempProduct > product)
+                        {
+                            AlterGridDetails(ref gridDetails, adjacentNumbers, ref product, tempProduct, "Left-to-right diagonal");
+                        }
+                        Array.Clear(gridDetails.GridTempIndexes, 0, gridDetails.GridTempIndexes.Length);
+                        Array.Clear(gridDetails.GridTempValues, 0, gridDetails.GridTempValues.Length);
+                        tempRightindex++;
+                    }
                 }
-                if (tempProduct > product)
+                //diagonal right to left starting from top to bottom
+                for (int leftIndex = 0; leftIndex <= arrayLeftLength - adjacentNumbers; leftIndex++)
                 {
-                    product = tempProduct;
+                    int tempRightIndex = arrayRightLength - 1;
+                    while (tempRightIndex >= adjacentNumbers - 1)
+                    {
+                        tempProduct = 1;
+                        for (int rightIndex = tempRightIndex, iterator = 0; iterator < adjacentNumbers; rightIndex--, iterator++)
+                        {
+                            tempProduct *= grid[leftIndex + iterator, rightIndex];
+                            gridDetails.GridTempIndexes[iterator] = "[" + (leftIndex + iterator) + "," + rightIndex + "]";
+                            gridDetails.GridTempValues[iterator] = grid[leftIndex + iterator, rightIndex];
+                        }
+                        if (tempProduct > product)
+                        {
+                            AlterGridDetails(ref gridDetails, adjacentNumbers, ref product, tempProduct, "Right-to-left diagonal");
+                        }
+                        Array.Clear(gridDetails.GridTempIndexes, 0, gridDetails.GridTempIndexes.Length);
+                        Array.Clear(gridDetails.GridTempValues, 0, gridDetails.GridTempValues.Length);
+                        tempRightIndex--;
+                    }
                 }
             }
 
-            return product;
+            return gridDetails;
         }
 
         public long LargestProductInSeries(string numSeries, int numOfAdjacentDigits)

@@ -79,11 +79,15 @@
   i`Largest Product In A Grid
 1. Get 3 numbers from user
 2. Generate grid based on user's first and second numbers
-3. Create 2 integers based on the grid, 2 longs set to 0 and 1 string
-4. Loop through the grid based on the user's third number multiplying the adjacent numbers in the same direction
-5. If the product generated is greater than a previous product, assign it to the integer
-6. If the user's third number has an adjacent number that equals the right-most or bottom-most number, go to the next line
-7. ...switch statement?
+3. Create 2 integers based on the grid's lengths, 2 longs set to 0
+4. Create a struct with the properties: 2 integer arrays to hold the values used to derive the product, a long to hold the product, a string to hold the direction, and 2 string arrays to hold the indexes used to derive the product
+5. If the user's third number is greater than the grid's lengths, exit the program
+6. If the grid's lengths are both 1, set default values for the grid and return it
+7. Loop through the grid based on the user's third number multiplying the adjacent numbers in the same direction
+8. If the product generated is greater than a previous product, assign it to the second long
+9. If the current right index plus the user's third number is greater than the right-most bound, go to the next line
+10. If the current left index plus the user's third number is greater than the bottom-most bound, break out of the loop
+11. Update struct based on the loop that generates the greater product
 
   i`Largest Product In Series
 1. Get a string of numbers and a number from user
