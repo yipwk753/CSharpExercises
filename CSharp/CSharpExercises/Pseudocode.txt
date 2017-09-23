@@ -43,6 +43,17 @@
 4. Add the smaller number to the temp variable each loop
 5. Check if the temp variable is divisible by both numbers
 
+  i`Find triangle number divisor
+1. Get number from user
+2. Account for if the user enters 1
+3. Create two integers both set to 3, and a list of integers
+4. Create a while loop with the boolean condition set to the user's number
+5. Empty the list
+6. Create an inner for loop with the initializer set to 3 and the boolean condition set to the first integer divided by 2 plus 1
+7. If the integer is divisible, add it to the list
+8. Once the loop is finished, add the first integer to the list
+9. Add the second integer to the first integer and increment the second integer
+
   i`FizzBuzz
 1. Get number from user
 2. Account for if the user's number is positive or negative

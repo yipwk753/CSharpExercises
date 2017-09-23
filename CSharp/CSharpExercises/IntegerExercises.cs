@@ -114,7 +114,7 @@ namespace CSharpExercises
             Console.WriteLine("Enter an integer to choose which method to execute:\n1) FizzBuzz\n2) Get Factors Of Composite Number\n3) Find LCD Of Two Numbers" +
                 "\n4) Prime Number Sieve\n5) Fibonacci Sequence\n6) Multiples of 3 and 5\n7) Even Fibonacci Numbers Sum\n8) Largest Prime Factor\n9) Largest Palindrome Product"+
                 "\n10) Smallest Multiple\n11) Sum Square Difference\n12) Check If Number Is Composite\n13) Find N-Prime\n14) Largest Product In Series\n15) Find Pythagorean Triplet"+
-                "\n16)Summation Of Primes\n17) Largest Product In A Grid");
+                "\n16)Summation Of Primes\n17) Largest Product In A Grid\n18) Find Triangle Divisor");
             string key = Console.ReadLine();
             switch (key)
             {
@@ -288,6 +288,15 @@ namespace CSharpExercises
                         Console.WriteLine("The direction used to derive the largest product is " + gridDetails.Direction);
                         break;
                     }
+                case "18":
+                    {
+                        int input = GetPositiveIntegerInput();
+                        List<int> numList = FindTriangleDivisor(input);
+                        Console.WriteLine("The value of the first number to have {0} or more divisors is {1}.",
+                            input, numList[numList.Count - 1]);
+                        Console.WriteLine("The number of divisors is {0}.", numList.Count);
+                        break;
+                    }
                 default:
                     {
                         Console.WriteLine("You entered a number unassociated with the methods.");
@@ -442,6 +451,38 @@ namespace CSharpExercises
             }
 
             return Tuple.Create(0, 0, 0, 0, isPerfectSquare);
+        }
+
+        //this runs very slowly for large inputs, implement a better algorithm in the future
+        public List<int> FindTriangleDivisor(int input)
+        {
+            List<int> divisorList = new List<int>();
+
+            if (input == 1)
+            {
+                divisorList.Add(1);
+                return divisorList;
+            }
+
+            int iterator = 3;
+            int triangleNum = 3;
+
+            while (divisorList.Count < input)
+            {
+                divisorList.Clear();
+                for (int divisor = 1; divisor < triangleNum / 2 + 1; divisor++)
+                {
+                    if (triangleNum % divisor == 0)
+                    {
+                        divisorList.Add(divisor);
+                    }
+                }
+                divisorList.Add(triangleNum);
+                triangleNum += iterator;
+                iterator++;
+            }
+
+            return divisorList;
         }
 
         public void FizzBuzz(int input)

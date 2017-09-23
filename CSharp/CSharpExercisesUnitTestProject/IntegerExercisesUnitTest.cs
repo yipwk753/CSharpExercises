@@ -84,6 +84,21 @@ namespace CSharpExercisesUnitTestProject
         }
 
         [TestMethod]
+        public void FindTriangleDivisorTest()
+        {
+            var triangleDivisor = intExercises.FindTriangleDivisor(4);
+            Assert.IsTrue(triangleDivisor.Count == 4);
+            Assert.AreEqual(1, triangleDivisor[0]);
+            Assert.AreEqual(2, triangleDivisor[1]);
+            Assert.AreEqual(3, triangleDivisor[2]);
+            Assert.AreEqual(6, triangleDivisor[3]);
+
+            /*triangleDivisor = intExercises.FindTriangleDivisor(500);
+            Assert.IsTrue(triangleDivisor.Count >= 500);
+            Assert.AreEqual(76576500, triangleDivisor[576]);*/
+        }
+
+        [TestMethod]
         public void GetFactorsOfCompositeNumberTest()
         {
             List<int> numList = new List<int>();
